@@ -1,6 +1,7 @@
 import re
 
-def automata(cadena):
+#Si la cadena cumple los creterios esta función realiza las transiciones 
+def transicion(cadena):
     estado_actual = 'q0'
     for caracter in cadena:
         if estado_actual == 'q0':
@@ -37,23 +38,18 @@ def automata(cadena):
     else:
         return False
 
-def main():
-    cadena = input("Ingrese una cadena formada por los elementos de A (0, 1, 2): ")
+#Esta función valida si la cadena cumple con los criterios de aceptación
+def validacion(cadena):
     
     # Verificar si la cadena contiene un "10"
     if re.search(r'10', cadena):
-        print("La cadena no puede contener '10'.")
-        return
+        return "La cadena no puede contener '10'."
     
     # Verificar si la cadena tiene una cantidad impar de caracteres
     if len(cadena) % 2 == 0:
-        print("La cadena debe tener una cantidad impar de caracteres.")
-        return
+        return"La cadena debe tener una cantidad impar de caracteres."
     
-    if automata(cadena):
-        print("La cadena es válida según el autómata.")
+    if transicion(cadena):
+        return "La cadena es válida según el autómata."
     else:
-        print("La cadena no es válida según el autómata.")
-
-if __name__ == "__main__":
-    main()  #La cadena debe tener una longitud impart y no terner un 10.
+        return "La cadena no es válida según el autómata."
